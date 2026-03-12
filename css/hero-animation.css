@@ -1,0 +1,290 @@
+/* Animation sophistiquée pour la section héro - Inspirée des activités MYKLI Multi-services */
+
+/* Conteneur principal de l'animation */
+.hero-animation-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: 1;
+    opacity: 0.3;
+}
+
+/* Particules flottantes représentant les matériaux */
+.material-particle {
+    position: absolute;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    animation: floatMaterial 15s infinite linear;
+}
+
+.material-particle:nth-child(odd) {
+    background: rgba(255, 255, 255, 0.08);
+    animation-duration: 20s;
+}
+
+.material-particle.large {
+    width: 8px;
+    height: 8px;
+}
+
+.material-particle.medium {
+    width: 5px;
+    height: 5px;
+}
+
+.material-particle.small {
+    width: 3px;
+    height: 3px;
+}
+
+/* Lignes de connexion représentant les services */
+.service-line {
+    position: absolute;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    animation: servicePulse 8s infinite ease-in-out;
+}
+
+.service-line.horizontal {
+    width: 200px;
+    animation-name: horizontalFlow;
+    animation-duration: 12s;
+}
+
+.service-line.vertical {
+    width: 1px;
+    height: 150px;
+    background: linear-gradient(180deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    animation-name: verticalFlow;
+    animation-duration: 10s;
+}
+
+/* Icônes flottantes représentant les secteurs d'activité */
+.activity-icon {
+    position: absolute;
+    color: rgba(255, 255, 255, 0.15);
+    font-size: 2rem;
+    animation: iconFloat 20s infinite ease-in-out;
+}
+
+.activity-icon.finance {
+    animation-delay: 0s;
+}
+
+.activity-icon.tech {
+    animation-delay: 5s;
+}
+
+.activity-icon.materials {
+    animation-delay: 10s;
+}
+
+.activity-icon.services {
+    animation-delay: 15s;
+}
+
+/* Vagues de données représentant l'IA et la technologie */
+.data-wave {
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, 
+        transparent 0%, 
+        rgba(255, 255, 255, 0.1) 25%, 
+        rgba(255, 255, 255, 0.2) 50%, 
+        rgba(255, 255, 255, 0.1) 75%, 
+        transparent 100%
+    );
+    animation: dataFlow 6s infinite linear;
+}
+
+.data-wave:nth-child(even) {
+    animation-direction: reverse;
+    animation-duration: 8s;
+}
+
+/* Cercles concentriques représentant l'expansion des services */
+.expansion-circle {
+    position: absolute;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    animation: expandCircle 12s infinite ease-out;
+}
+
+.expansion-circle.small {
+    width: 50px;
+    height: 50px;
+}
+
+.expansion-circle.medium {
+    width: 100px;
+    height: 100px;
+    animation-delay: 2s;
+}
+
+.expansion-circle.large {
+    width: 200px;
+    height: 200px;
+    animation-delay: 4s;
+}
+
+/* Animations keyframes */
+@keyframes floatMaterial {
+    0% {
+        transform: translateY(100vh) translateX(0) rotate(0deg);
+        opacity: 0;
+    }
+    10% {
+        opacity: 1;
+    }
+    90% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-100px) translateX(50px) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+@keyframes servicePulse {
+    0%, 100% {
+        opacity: 0.1;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 0.3;
+        transform: scale(1.1);
+    }
+}
+
+@keyframes horizontalFlow {
+    0% {
+        transform: translateX(-200px);
+        opacity: 0;
+    }
+    20% {
+        opacity: 1;
+    }
+    80% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateX(calc(100vw + 200px));
+        opacity: 0;
+    }
+}
+
+@keyframes verticalFlow {
+    0% {
+        transform: translateY(-150px);
+        opacity: 0;
+    }
+    20% {
+        opacity: 1;
+    }
+    80% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(100vh);
+        opacity: 0;
+    }
+}
+
+@keyframes iconFloat {
+    0%, 100% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 0.1;
+    }
+    25% {
+        transform: translateY(-30px) rotate(90deg);
+        opacity: 0.2;
+    }
+    50% {
+        transform: translateY(-20px) rotate(180deg);
+        opacity: 0.15;
+    }
+    75% {
+        transform: translateY(-40px) rotate(270deg);
+        opacity: 0.2;
+    }
+}
+
+@keyframes dataFlow {
+    0% {
+        transform: translateX(-100%);
+    }
+    100% {
+        transform: translateX(100%);
+    }
+}
+
+@keyframes expandCircle {
+    0% {
+        transform: scale(0);
+        opacity: 0.3;
+    }
+    50% {
+        opacity: 0.1;
+    }
+    100% {
+        transform: scale(3);
+        opacity: 0;
+    }
+}
+
+/* Responsive pour mobile */
+@media (max-width: 768px) {
+    .activity-icon {
+        font-size: 1.5rem;
+    }
+    
+    .service-line.horizontal {
+        width: 150px;
+    }
+    
+    .service-line.vertical {
+        height: 100px;
+    }
+    
+    .expansion-circle.large {
+        width: 150px;
+        height: 150px;
+    }
+    
+    .material-particle.large {
+        width: 6px;
+        height: 6px;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-animation-container {
+        opacity: 0.2;
+    }
+    
+    .activity-icon {
+        font-size: 1.2rem;
+    }
+    
+    .service-line.horizontal {
+        width: 100px;
+    }
+    
+    .service-line.vertical {
+        height: 80px;
+    }
+    
+    .expansion-circle.large {
+        width: 100px;
+        height: 100px;
+    }
+    
+    .expansion-circle.medium {
+        width: 70px;
+        height: 70px;
+    }
+}
